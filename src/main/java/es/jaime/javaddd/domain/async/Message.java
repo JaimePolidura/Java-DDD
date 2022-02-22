@@ -39,7 +39,7 @@ public interface Message extends Serializable {
     }
 
     default Map<String, Object> toPrimitives() {
-        return new HashMap<>() {{
+        return new HashMap<String, Object>() {{
             put("id", id().toString());
             put("created_on", date().toString());
             put("type", type().name());
