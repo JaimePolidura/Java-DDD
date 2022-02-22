@@ -38,14 +38,14 @@ public interface Message extends Serializable {
         return LocalDateTime.now();
     }
 
-    default Map<String, Object> toPrimitives(){
-        return Map.of(
-                "id", id().toString(),
-                "created_on", date().toString(),
-                "type", type().name(),
-                "name", name(),
-                "body", body(),
-                "meta", meta()
-        );
+    default Map<String, Object> toPrimitives() {
+        return new HashMap<>() {{
+            put("id", id().toString());
+            put("created_on", date().toString());
+            put("type", type().name());
+            put("name", name());
+            put("body", body());
+            put("meta", meta());
+        }};
     }
 }
