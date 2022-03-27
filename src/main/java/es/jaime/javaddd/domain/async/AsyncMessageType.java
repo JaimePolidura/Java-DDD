@@ -1,5 +1,5 @@
 package es.jaime.javaddd.domain.async;
 
-public enum MessageType {
+public enum AsyncMessageType {
     COMMAND, EVENT, QUERY
 }

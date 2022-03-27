@@ -20,8 +20,8 @@ import java.util.UUID;
  *   "meta": {}
  * }
  */
-public interface Message extends Serializable {
-    MessageType type();
+public interface AsyncMessage extends Serializable {
+    AsyncMessageType type();
     String name();
 
     Map<String, Object> body();

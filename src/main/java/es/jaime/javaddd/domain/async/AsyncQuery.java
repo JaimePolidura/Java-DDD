@@ -1,8 +1,8 @@
 package es.jaime.javaddd.domain.async;
 
-public interface AsyncDomainEvent extends AsyncMessage {
+public interface AsyncQuery extends AsyncMessage{
     @Override
     default AsyncMessageType type(){
-        return AsyncMessageType.EVENT;
+        return AsyncMessageType.QUERY;
     }
 }
