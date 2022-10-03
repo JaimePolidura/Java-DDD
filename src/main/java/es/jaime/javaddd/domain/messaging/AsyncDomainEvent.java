@@ -1,4 +1,4 @@
-package es.jaime.javaddd.domain.async;
+package es.jaime.javaddd.domain.messaging;
 
 public interface AsyncDomainEvent extends AsyncMessage {
     @Override

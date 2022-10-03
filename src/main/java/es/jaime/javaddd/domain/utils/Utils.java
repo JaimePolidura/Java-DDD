@@ -1,9 +1,10 @@
-package es.jaime.javaddd.domain;
+package es.jaime.javaddd.domain.utils;
 
 import lombok.SneakyThrows;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public final class Utils {
     private Utils() {}
@@ -19,10 +20,21 @@ public final class Utils {
         return toReturn;
     }
 
-    public static void repeat(int times, Runnable runnable){
-        for (int i = 0; i < times; i++) {
+    public static void repeat(double times, Runnable runnable) {
+        for (int i = 0; i < times; i++)
             runnable.run();
-        }
+    }
+
+    public static void repeat(double times, Consumer<Integer> consumer) {
+        for (int i = 0; i < times; i++)
+            consumer.accept(i);
+    }
+
+
+
+    public static void repeat(int times, Runnable runnable){
+        for (int i = 0; i < times; i++)
+            runnable.run();
     }
 
     @SneakyThrows
