@@ -54,6 +54,11 @@ public final class MUCache<K, V> implements Cache<K, V> {
     }
 
     @Override
+    public boolean contains(K key) {
+        return this.indexedEntries.containsKey(key);
+    }
+
+    @Override
     public void invalidate(K key) {
         this.readWriteLock.writeLock().lock();
 
@@ -107,8 +112,6 @@ public final class MUCache<K, V> implements Cache<K, V> {
                 leastUsesCacheEntryUseCounter = lessUsedUseCounter;
             }
         }
-
-        System.out.println(leastUsedCacheEntry);
 
         this.entries.remove(leastUsedCacheEntry);
         this.indexedEntries.remove(leastUsedCacheEntry.key);
