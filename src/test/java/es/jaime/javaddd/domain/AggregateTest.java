@@ -1,11 +1,12 @@
-import es.jaime.javaddd.domain.Aggregate;
+package es.jaime.javaddd.domain;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import java.util.Map;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public final class AggregateTest {
     @Test
@@ -19,7 +20,7 @@ public final class AggregateTest {
 
 
     @AllArgsConstructor
-    private class AggregateTestClass extends Aggregate {
+    private static class AggregateTestClass extends Aggregate {
         @Getter private final String name;
         @Getter private final double number;
     }

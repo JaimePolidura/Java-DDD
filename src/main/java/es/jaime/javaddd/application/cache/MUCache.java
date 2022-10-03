@@ -11,13 +11,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public final class LRUCache<K, V> implements Cache<K, V> {
+public final class MUCache<K, V> implements Cache<K, V> {
     private final LinkedList<CacheEntry<K, V>> entries;
     private final Map<K, CacheEntry<K, V>> indexedEntries;
     private final ReadWriteLock readWriteLock;
     private final int maxCapacity;
 
-    public LRUCache(int maxCapacity) {
+    public MUCache(int maxCapacity) {
         this.readWriteLock = new ReentrantReadWriteLock(true);
         this.indexedEntries = new HashMap<>();
         this.entries = new LinkedList<>();
@@ -88,7 +88,7 @@ public final class LRUCache<K, V> implements Cache<K, V> {
         Iterator<CacheEntry<K, V>> entriesIterator = this.entries.iterator();
         int actualIndex = 0;
 
-        CacheEntry<K, V> leastUsedCacheEntry = null;
+        CacheEntry<K, V> leastUsedCacheEntry = entriesIterator.next();
         int leastUsesCacheEntryUseCounter = 0;
 
         while (entriesIterator.hasNext()) {
@@ -107,6 +107,8 @@ public final class LRUCache<K, V> implements Cache<K, V> {
                 leastUsesCacheEntryUseCounter = lessUsedUseCounter;
             }
         }
+
+        System.out.println(leastUsedCacheEntry);
 
         this.entries.remove(leastUsedCacheEntry);
         this.indexedEntries.remove(leastUsedCacheEntry.key);
