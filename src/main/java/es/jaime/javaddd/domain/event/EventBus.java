@@ -3,7 +3,11 @@ package es.jaime.javaddd.domain.event;
 import java.util.List;
 
 public interface EventBus {
-    void publish(final List<DomainEvent> events);
+    void publishAsync(final List<DomainEvent> events);
 
-    void publish(DomainEvent event);
+    void publishAsync(DomainEvent event);
+
+    void publishSync(final List<DomainEvent> events);
+
+    void publishSync(DomainEvent event);
 }
