@@ -123,18 +123,6 @@ public final class CollectionUtils {
         return map;
     }
 
-    public static <K, V> Map<K, List<V>> incrementMapList(Map<K, List<V>> map, K key, V valueToApply) {
-        List<V> found = map.get(key);
-        if (found == null){
-            map.put(key, new LinkedList<>(Collections.singletonList(valueToApply)));
-        }else{
-            found.add(valueToApply);
-            map.put(key, found);
-        }
-
-        return map;
-    }
-
     public static <I, O> List<O> map(List<I> initial, Function<I, O> mapper) {
         return initial.stream()
                 .map(mapper)
