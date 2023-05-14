@@ -1,4 +1,4 @@
-package es.jaime.javaddd.domain.utils;
+package es.jaime.javaddd.application.utils;
 
 @FunctionalInterface
 public interface CheckedRunnable {

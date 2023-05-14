@@ -1,4 +1,4 @@
-package es.jaime.javaddd.application.cache.utils;
+package es.jaime.javaddd.application.cache;
 
 import es.jaime.javaddd.domain.cache.Cache;
 import lombok.AllArgsConstructor;

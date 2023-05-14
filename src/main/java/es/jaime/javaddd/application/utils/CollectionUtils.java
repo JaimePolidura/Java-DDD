@@ -1,4 +1,4 @@
-package es.jaime.javaddd.domain.utils;
+package es.jaime.javaddd.application.utils;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -109,6 +109,10 @@ public final class CollectionUtils {
         Map<Object, Boolean> seen = new ConcurrentHashMap<>();
 
         return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
+    }
+
+    public static <T> Iterator<T> newCircularIterator(Collection<T> collection) {
+        return new CircularIterator<>(collection);
     }
 
     @SafeVarargs

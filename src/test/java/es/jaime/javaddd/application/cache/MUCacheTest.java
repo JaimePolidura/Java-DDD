@@ -1,6 +1,5 @@
 package es.jaime.javaddd.application.cache;
 
-import es.jaime.javaddd.application.cache.utils.MUCache;
 import es.jaime.javaddd.domain.cache.Cache;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

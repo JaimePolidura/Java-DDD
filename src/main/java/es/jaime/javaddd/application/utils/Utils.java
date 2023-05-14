@@ -1,4 +1,4 @@
-package es.jaime.javaddd.domain.utils;
+package es.jaime.javaddd.application.utils;
 
 import lombok.SneakyThrows;
 
@@ -29,8 +29,6 @@ public final class Utils {
         for (int i = 0; i < times; i++)
             consumer.accept(i);
     }
-
-
 
     public static void repeat(int times, Runnable runnable){
         for (int i = 0; i < times; i++)

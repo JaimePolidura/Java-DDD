@@ -1,4 +1,4 @@
-package es.jaime.javaddd.application.cache.utils;
+package es.jaime.javaddd.application.utils;
 
 import java.util.Collection;
 import java.util.Iterator;
