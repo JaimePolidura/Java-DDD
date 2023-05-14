@@ -34,7 +34,7 @@ public final class CollectionUtils {
         return grouped;
     }
 
-    public static <K, V> Map<K, Collection<V>> incrementMapList(Map<K, Collection<V>> map, K key, V value, Supplier<Collection<V>> newCollection) {
+    public static <K, V> Map<K, List<V>> incrementMapList(Map<K, List<V>> map, K key, V value, Supplier<List<V>> newCollection) {
         map.putIfAbsent(key, newCollection.get());
         map.get(key).add(value);
 
