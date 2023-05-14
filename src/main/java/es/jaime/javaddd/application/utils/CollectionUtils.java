@@ -44,7 +44,7 @@ public final class CollectionUtils {
     public static <K, V> int getPositionOfKeyInMap(Map<K, V> map, Predicate<K> keyMatcher){
         int position = 0;
 
-        for(var entry : map.entrySet()){
+        for(Map.Entry<K, V> entry : map.entrySet()){
             position++;
 
             if(keyMatcher.test(entry.getKey()))
