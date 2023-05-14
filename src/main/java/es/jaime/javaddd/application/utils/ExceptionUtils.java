@@ -28,6 +28,15 @@ public final class ExceptionUtils {
         }
     }
 
+    public static void runCheckedOrTerminate(CheckedRunnable checkedRunnable) {
+        try {
+            checkedRunnable.run();
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+    }
+
     public static void rethrowChecked(CheckedRunnable runnable) {
         try{
             runnable.run();

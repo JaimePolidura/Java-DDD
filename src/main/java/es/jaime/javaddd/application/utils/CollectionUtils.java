@@ -2,9 +2,7 @@ package es.jaime.javaddd.application.utils;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.function.*;
 import java.util.stream.Collectors;
 
 public final class CollectionUtils {
@@ -34,6 +32,44 @@ public final class CollectionUtils {
         }
 
         return grouped;
+    }
+
+    public static <K, V> Map<K, Collection<V>> incrementMapList(Map<K, Collection<V>> map, K key, V value, Supplier<Collection<V>> newCollection) {
+        map.putIfAbsent(key, newCollection.get());
+        map.get(key).add(value);
+
+        return map;
+    }
+
+    public static <K, V> int getPositionOfKeyInMap(Map<K, V> map, Predicate<K> keyMatcher){
+        int position = 0;
+
+        for(var entry : map.entrySet()){
+            position++;
+
+            if(keyMatcher.test(entry.getKey()))
+                return position;
+        }
+
+        return -1;
+    }
+
+    public static<K, V> HashMap<K, V> sortMapByValue(Map<K, V> map, Comparator<V> valueComparator) {
+        List<Map.Entry<K, V>> list = new LinkedList<>(map.entrySet());
+        list.sort((a, b) -> valueComparator.compare(a.getValue(), b.getValue()));
+
+        HashMap<K, V> temp = new LinkedHashMap<>();
+        for (Map.Entry<K, V> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+
+        return temp;
+    }
+
+    public static<E> double getSum(List<E> list, ToDoubleFunction<E> whatToSum) {
+        return list.stream()
+                .mapToDouble(whatToSum)
+                .sum();
     }
 
     public static <K, V> Map<K, V> mapDiff(Map<K, V> mapA, Map<K, V> mapB, BiFunction<V, V, V> combiner,
