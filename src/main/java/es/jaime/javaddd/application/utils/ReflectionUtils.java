@@ -3,6 +3,7 @@ package es.jaime.javaddd.application.utils;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
 public final class ReflectionUtils {
@@ -11,6 +12,15 @@ public final class ReflectionUtils {
     public static Optional<Constructor<?>> getSmallestConstructor(Class<?> classToGetConstructor){
         return Arrays.stream(classToGetConstructor.getConstructors())
                 .min(Comparator.comparingInt(Constructor::getParameterCount));
+    }
+
+    public static boolean hasInterfaceWithGenericType(Class<?> toCheck, Class<?> typeToCheck) {
+        return Arrays.stream(toCheck.getGenericInterfaces())
+                .map(genericInterface -> (ParameterizedType) genericInterface)
+                .map(ParameterizedType::getActualTypeArguments)
+                .flatMap(Arrays::stream)
+                .map(generic -> (Class<?>) generic)
+                .anyMatch(generic -> generic.equals(typeToCheck));
     }
 
     public static List<Class<?>> getAbstractions(Class<?> implementation) {
