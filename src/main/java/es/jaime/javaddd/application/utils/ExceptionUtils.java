@@ -37,6 +37,14 @@ public final class ExceptionUtils {
         }
     }
 
+    public static <T> T rethrowChecked(Callable<T> runnable) {
+        try{
+            return runnable.call();
+        }catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
     public static void rethrowChecked(CheckedRunnable runnable) {
         try{
             runnable.run();
