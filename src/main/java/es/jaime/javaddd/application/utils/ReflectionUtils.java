@@ -2,6 +2,7 @@ package es.jaime.javaddd.application.utils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.util.*;
@@ -66,5 +67,16 @@ public final class ReflectionUtils {
 
     public static List<Class<?>> findInterfacesInClass(Class<?> clazz) {
         return new ArrayList<>(Arrays.asList(clazz.getInterfaces()));
+    }
+
+    public static List<Field> getAllFields(Class<?> actualClass) {
+        List<Field> fields = new ArrayList<>();
+
+        while (actualClass != Object.class) {
+            fields.addAll(Arrays.asList(actualClass.getDeclaredFields()));
+            actualClass = actualClass.getSuperclass();
+        }
+
+        return fields;
     }
 }
