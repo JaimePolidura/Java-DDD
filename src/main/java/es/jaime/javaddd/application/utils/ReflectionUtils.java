@@ -1,5 +1,7 @@
 package es.jaime.javaddd.application.utils;
 
+import es.jaime.javaddd.domain.exceptions.ResourceNotFound;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -67,6 +69,17 @@ public final class ReflectionUtils {
 
     public static List<Class<?>> findInterfacesInClass(Class<?> clazz) {
         return new ArrayList<>(Arrays.asList(clazz.getInterfaces()));
+    }
+
+    public static <I, O> O getFieldValue(I instance, String fieldName) throws IllegalAccessException {
+        Field field = getAllFields(instance.getClass()).stream()
+                .filter(f -> f.getName().equalsIgnoreCase(fieldName))
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFound(String.format("Field %s not foun for %s", fieldName, instance.getClass().getName())));
+
+        field.setAccessible(true);
+
+        return (O) field.get(instance);
     }
 
     public static List<Field> getAllFields(Class<?> actualClass) {
