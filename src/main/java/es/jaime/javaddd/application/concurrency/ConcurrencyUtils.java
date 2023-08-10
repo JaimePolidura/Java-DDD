@@ -1,7 +1,10 @@
-package es.jaime.javaddd.application.utils;
+package es.jaime.javaddd.application.concurrency;
+
+import es.jaime.javaddd.application.utils.Utils;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.locks.Lock;
 
 public final class ConcurrencyUtils {
