@@ -1,6 +1,9 @@
 package es.jaime.javaddd.application.concurrency;
 
+import java.io.PrintWriter;
+import java.util.AbstractQueue;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 public final class ManualFuture<T> implements Future<T> {
     private final CountDownLatch latch;
